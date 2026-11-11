@@ -1,0 +1,5 @@
+pin_type,purchase_cost,shape,default_size_m,default_thickness_m,default_restitution,default_friction
+elastic,6,capsule,0.65,0.10,0.62,0.25
+absorber,6,capsule,0.65,0.10,0.06,0.30
+slope,2,capsule,0.65,0.10,0.25,0.45
+rotor,4,rotor,0.35,0.08,0.35,0.30

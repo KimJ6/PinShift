@@ -1,0 +1,8 @@
+slot_id,position,kind,value,round_scaled,odd_round_net_step
+safe-left,0,reward,1,false,-1
+bonus-left,1,reward,2,false,0
+loss-left,2,loss,1,false,0
+jackpot,3,reward,4,true,0
+loss-right,4,loss,1,false,0
+bonus-right,5,reward,2,false,0
+safe-right,6,reward,1,false,-1

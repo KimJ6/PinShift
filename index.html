@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pinfall Lab - Box2D Pachinko</title>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="speed-control" role="group" aria-label="시뮬레이션 속도">
+          <span>속도</span>
+          <button class="speed-button" type="button" data-speed="1" aria-pressed="true">1×</button>
+          <button class="speed-button" type="button" data-speed="2" aria-pressed="false">2×</button>
+          <button class="speed-button" type="button" data-speed="4" aria-pressed="false">4×</button>
+          <button class="speed-button" type="button" data-speed="8" aria-pressed="false">8×</button>
+        </div>
+        <div class="readouts" aria-live="polite">
+          <div class="readout readout-round"><span>라운드</span><strong id="round-value">-</strong></div>
+          <div class="readout readout-balance"><span>보유</span><strong><span class="ball-token" aria-hidden="true">●</span> × <span id="balance-value">-</span></strong></div>
+          <div class="readout readout-phase"><strong id="phase-value">로딩</strong></div>
+        </div>
+        <div class="sound-control">
+          <button id="sound-toggle" class="sound-toggle" type="button" aria-pressed="true" aria-label="효과음 음소거" title="효과음 음소거" data-volume-level="high">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path class="speaker-shape" d="M4 10h4l5-4v12l-5-4H4z" />
+              <path class="sound-wave wave-one" d="M16 9.5a3.5 3.5 0 0 1 0 5" />
+              <path class="sound-wave wave-two" d="M18.5 7a7 7 0 0 1 0 10" />
+            </svg>
+          </button>
+          <input id="sound-volume" class="sound-volume" type="range" min="0" max="100" value="65" step="1" aria-label="효과음 볼륨" />
+        </div>
+      </header>
+
+      <section class="game-layout">
+        <aside class="panel shop-panel">
+          <h2>핀 상점</h2>
+          <p class="guide"><span class="guide-label">배치</span><span>구매한 핀을 필드의 배치선으로 끌어 놓으세요.</span></p>
+          <div id="shop-list" class="shop-list"></div>
+          <section class="launch-section" aria-label="라운드 투입 설정">
+            <div class="divider"></div>
+            <label class="section-label">이번 라운드 투입량</label>
+            <div id="launch-counter" class="digit-counter" aria-label="투입 수, 백의 자리부터 일의 자리까지">
+              <button class="digit-button" type="button" data-place="100" data-label="백" aria-label="백의 자리">0</button>
+              <button class="digit-button" type="button" data-place="10" data-label="십" aria-label="십의 자리">0</button>
+              <button class="digit-button" type="button" data-place="1" data-label="일" aria-label="일의 자리">1</button>
+            </div>
+            <p class="guide"><span class="guide-label">조절</span><span>각 자리를 클릭하거나 휠로 조절하세요.</span></p>
+            <button id="start-button" class="primary">라운드 시작</button>
+            <p id="status-message" class="status-message">설정을 불러오는 중입니다.</p>
+          </section>
+        </aside>
+
+        <section class="field-stack" aria-label="빠칭코 필드와 라운드 현황">
+          <section class="board-panel" aria-label="빠칭코 필드">
+            <div class="field-shell">
+              <div id="canvas-host" class="canvas-host"></div>
+              <div id="slot-summary" class="slot-summary" aria-label="점수칸별 유입 공 수"></div>
+            </div>
+          </section>
+
+          <section class="panel round-summary" aria-label="라운드 요약">
+            <div class="section-heading">
+              <h2 id="settlement-title">라운드 현황</h2>
+              <span id="settlement-state">대기</span>
+            </div>
+            <div class="settlement-totals" aria-live="polite">
+              <div class="summary-metric"><span class="metric-label">투입</span><strong id="settlement-launched">○ × 0</strong></div>
+              <div class="summary-metric"><span class="metric-label">순변화</span><strong id="settlement-net">0</strong></div>
+              <div class="summary-metric"><span class="metric-label">보유</span><strong id="settlement-balance">○ × 0</strong></div>
+            </div>
+          </section>
+        </section>
+
+        <aside class="panel inspector-panel">
+          <h2>선택한 핀</h2>
+          <div id="inspector-empty" class="empty-state"><p class="guide"><span class="guide-label">선택</span><span>필드의 특수 핀을 선택해 수치를 조절하세요.</span></p></div>
+          <div id="inspector" hidden>
+            <p id="pin-name" class="pin-name"></p>
+            <p id="pin-level" class="muted"></p>
+            <p class="guide inspector-guide"><span class="guide-label">범위</span><span>청록은 현재 조절 가능, 파랑은 다음 레벨에서 해금됩니다.</span></p>
+            <button id="upgrade-button">업그레이드</button>
+            <div id="parameter-list" class="parameter-list"></div>
+          </div>
+        </aside>
+
+        <section class="panel event-log-panel" aria-label="정산 로그">
+          <div class="section-heading"><h2>정산 로그</h2><span>최근 결과</span></div>
+          <ol id="event-log" class="event-log is-empty"><li id="event-log-empty" class="event-log-empty"><span>기록</span><span>아직 정산 기록이 없습니다.<br />라운드를 시작하면 공의 도착 결과가 기록됩니다.</span></li></ol>
+        </section>
+      </section>
+    </main>
+    <script type="module" src="/web/src/main.ts"></script>
+  </body>
+</html>
