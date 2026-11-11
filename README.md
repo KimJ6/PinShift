@@ -117,10 +117,10 @@ PinShift/
 │  ├─ worker/physics.worker.ts      # 물리 월드·게임 상태·정산
 │  ├─ config.ts                     # CSV 로딩 및 검증
 │  └─ scoring.ts                    # 결과 칸 보상·손실 규칙
-├─ public/config/                  # 게임 밸런스 및 물리 설정 CSV
-├─ tests/run.mjs                   # 규칙 테스트
-├─ THIRD_PARTY_NOTICES.md         # 외부 라이브러리 고지
-└─ package.json                    # 의존성 및 실행 스크립트
+├─ public/config/                   # 게임 밸런스 및 물리 설정 CSV
+├─ tests/run.mjs                    # 규칙 테스트
+├─ THIRD_PARTY_NOTICES.md           # 외부 라이브러리 고지
+└─ package.json                     # 의존성 및 실행 스크립트
 ```
 
 초기 설정값은 `public/config/*.csv`에서 관리하며, 변경 사항은 새 게임을 로드할 때 적용됩니다.
