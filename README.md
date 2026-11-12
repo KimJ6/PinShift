@@ -104,7 +104,7 @@ pnpm run build
 pnpm test
 ```
 
-Windows에서는 의존성 설치 후 [`Run_Pinfall_Lab.cmd`](Run_Pinfall_Lab.cmd)를 실행해 로컬 서버와 브라우저를 열 수도 있습니다. WebAssembly 및 Web Worker를 사용하므로 `index.html`을 `file://`로 직접 열어서는 정상 실행되지 않습니다.
+Windows에서는 의존성 설치 후 [`Run_PinShift.cmd`](Run_PinShift.cmd)를 실행해 로컬 서버와 브라우저를 열 수도 있습니다. WebAssembly 및 Web Worker를 사용하므로 `index.html`을 `file://`로 직접 열어서는 정상 실행되지 않습니다.
 
 ## 프로젝트 구조
 

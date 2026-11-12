@@ -17,10 +17,10 @@ if not exist "node_modules\vite\bin\vite.js" (
   exit /b 1
 )
 
-start "Pinfall Lab Server" /min cmd.exe /d /c call "%~dp0Run_Pinfall_Server.cmd"
+start "PinShift Server" /min cmd.exe /d /c call "%~dp0Run_PinShift_Server.cmd"
 ping 127.0.0.1 -n 3 >nul
 start "" "http://127.0.0.1:4173"
 
-echo Pinfall Lab was opened in your browser.
-echo Close the minimized Pinfall Lab Server window to stop it.
+echo PinShift was opened in your browser.
+echo Close the minimized PinShift Server window to stop it.
 exit /b 0
